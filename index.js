@@ -4,6 +4,7 @@ var traverse = module.exports = function (obj) {
 
 function Traverse (obj) {
     this.value = obj;
+    this.pathSeparator = '.'
 }
 
 Traverse.prototype.get = function (ps) {
@@ -28,6 +29,22 @@ Traverse.prototype.has = function (ps) {
         }
         node = node[key];
     }
+    return true;
+};
+
+Traverse.prototype.delete = function (ps) {
+    var node = this.value;
+    if (typeof ps === 'string') { 
+        ps = ps.split(this.pathSeparator)
+    }
+    for (var i = 0; i < ps.length - 1; i ++) {
+        var key = ps[i];
+        if (!node || !hasOwnProperty.call(node, key)) {
+            return false;
+        }
+        node = node[key];
+    }
+    delete node[ps[i]];
     return true;
 };
 

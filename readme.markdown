@@ -122,6 +122,10 @@ Set the element at the array `path` to `value`.
 
 Return whether the element at the array `path` exists.
 
+## .delete(path)
+
+Delete the element at the array `path`.
+
 # context
 
 Each method that takes a callback has a context (its `this` object) with these
